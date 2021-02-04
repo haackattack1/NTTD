@@ -1,0 +1,22 @@
+---
+- name: Install Apache and PHP
+  hosts: all
+  become: yes
+  become_method: sudo
+  tasks:
+    - name: "Install apache"
+      package: name=httpd state=present
+    - name: "Install apache-php"
+      package: name=php state=present
+    - name: "Install php-cli"
+      package: name=php-cli state=present
+    - name: "Install php-gd"
+      package: name=php-gd state=present
+    - name: "Install php-mysql"
+      package: name=php-gd state=present
+    - copy:
+        src: /var/www/html/index.html
+        dest: /var/www/html/index.html
+        owner: root
+        group: root
+        mode: 0644
